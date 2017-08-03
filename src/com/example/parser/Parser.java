@@ -5,22 +5,18 @@ import java.io.StringReader;
 
 
 /**
- * @author preqel
+ *    
  *自定义解析器
  */
 public class Parser {
-	
 	
 	int pos  = 0;
     public static final char EOF = (char) -1;
 	private Reader reader ;
 	
-
-	
 	public Parser(String parser) {
 		this.reader = new StringReader(parser);
 	}
-	
 	
 	public void parse() throws Exception {
 
@@ -28,24 +24,56 @@ public class Parser {
 			char ch = this.getChar();
 			if (ch == EOF)
 				break;
-			else if(ch == '<'){
-				
-			}else if(ch == '/'){
-				 this.ungetChar(2);
-                this.parseEndTag(pos);
-				System.out.println(ch+" . ");
-				break;
-			}else if(ch == ' ')
-			{
-				
-			}			
-			
-			
-			System.out.print(ch + " ");
-		}
+			else if (ch == '<') {
 
+			} else if (ch == '/') {
+				this.ungetChar(2);
+				this.parseEndTag(pos);
+				System.out.println(ch + " . ");
+				break;
+			} else {
+
+				this.ungetChar(1);
+				this.parseText(pos);
+			}
+		}
 		return;
 	}
+	
+	
+	 public void parseText(int start) throws Exception {
+	     
+	    		  while (true) {
+	    	            char ch = this.getChar();
+	    	            if (EOF == ch) {
+	    	                this.ungetChar();
+	    	                char data[] = this.makeString(start, pos);
+	    	                if (data != null) {
+	    	                	System.out.println(new String(data));
+//	    	                    this.parserHandler.characters(data, start, pos, pos - start);
+	    	                }
+	    	                break;
+	    	            } else if ('<' == ch) {
+	    	            	//解析到 空 等各类标签后 循环解析到 < 为止， 计算进入时的字符间的内容
+	    	            	
+	    	                this.ungetChar();
+	    	                char data[] = this.makeString(start, pos);
+	    	                if (data != null) {
+	    	                	System.out.println(new String(data));
+//	    	                    this.parserHandler.characters(data, start, pos, pos - start);
+	    	                }
+	    	                break;
+	    	            }
+	    	        }
+	    }
+	 
+	 public void ungetChar(){
+		 try {
+			this.ungetChar(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	 }
 	
 	
 	public char getChar() throws Exception {
