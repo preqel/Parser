@@ -29,7 +29,7 @@ public class Parser {
 			} else if (ch == '/') {
 				this.ungetChar(2);
 				this.parseEndTag(pos);
-				System.out.println(ch + " . ");
+				System.out.println(ch + " ---- ");
 				break;
 			} else {
 
@@ -140,6 +140,7 @@ public class Parser {
                    // throw new ParserException("illegal tag:" + pos);
                 }
             } else if (' ' == ch||'/' == ch) {
+            	
             }else if ('>' == ch) {
                 break;
             } else {
