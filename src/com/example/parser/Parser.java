@@ -50,8 +50,8 @@ public class Parser {
 	    	                char data[] = this.makeString(start, pos);
 	    	                if (data != null) {
 	    	                	System.out.println(new String(data));
-//	    	                    this.parserHandler.characters(data, start, pos, pos - start);
 	    	                }
+				//
 	    	                break;
 	    	            } else if ('<' == ch) {
 	    	            	//解析到 空 等各类标签后 循环解析到 < 为止， 计算进入时的字符间的内容
@@ -60,7 +60,7 @@ public class Parser {
 	    	                char data[] = this.makeString(start, pos);
 	    	                if (data != null) {
 	    	                	System.out.println(new String(data));
-//	    	                    this.parserHandler.characters(data, start, pos, pos - start);
+					// 	                     
 	    	                }
 	    	                break;
 	    	            }
@@ -121,8 +121,9 @@ public class Parser {
         if (text.trim().equals("")  ) {
             data = null;
         }
+        System.out.println("[" + start + "," + end + "]Text: " + new String(data));
         return data;
-        //if(ActivityStore.debugon) System.out.println("[" + start + "," + end + "]Text: " + new String(data));
+         
     }
     
     /**
@@ -147,8 +148,8 @@ public class Parser {
                 hsml.append(ch);
             }
         }
+        //
         System.out.println(hsml+" )");
-        //this.parserHandler.endElement(hsml.toString(), start, pos);
     }
     
     
