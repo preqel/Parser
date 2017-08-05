@@ -48,9 +48,9 @@ public class Parser {
 	    	            if (EOF == ch) {
 	    	                this.ungetChar();
 	    	                char data[] = this.makeString(start, pos);
-	    	                if (data != null) {
-	    	                	System.out.println(new String(data));
-	    	                }
+//	    	                if (data != null) {
+//	    	                	System.out.println(new String(data));
+//	    	                }
 				//
 	    	                break;
 	    	            } else if ('<' == ch) {
@@ -58,10 +58,10 @@ public class Parser {
 	    	            	
 	    	                this.ungetChar();
 	    	                char data[] = this.makeString(start, pos);
-	    	                if (data != null) {
-	    	                	System.out.println(new String(data));
-					// 	                     
-	    	                }
+//	    	                if (data != null) {
+//	    	                	System.out.println(new String(data));
+//					// 	                     
+//	    	                }
 	    	                break;
 	    	            }
 	    	        }
