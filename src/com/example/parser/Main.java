@@ -8,8 +8,10 @@ import java.io.InputStream;
 
 public class Main {
 
+	
+
 	public static void main(String[] args) throws IOException {
-		File file = new File("e:\\a.txt");
+		File file = new File("e:\\test.txt");	   //请将要解析的文本放到e盘下面，并重名为test.txt
 		InputStream in = new FileInputStream(file);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];

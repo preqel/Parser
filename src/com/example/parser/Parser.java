@@ -6,7 +6,8 @@ import java.io.StringReader;
 
 /**
  *    
- *自定义解析器
+ *一个自定义解析器
+ *
  */
 public class Parser {
 	
@@ -29,7 +30,7 @@ public class Parser {
 			} else if (ch == '/') {
 				this.ungetChar(2);
 				this.parseEndTag(pos);
-				System.out.println(ch + " ---- ");
+				System.out.println(ch + " //// ");
 				break;
 			} else {
 
@@ -117,11 +118,11 @@ public class Parser {
         this.reader.skip(start);
         this.reader.read(data);
         String text = new String(data);
-//        if (text.trim().equals("") && this.whiteignore) {
+//        
         if (text.trim().equals("")  ) {
             data = null;
         }
-        System.out.println("[" + start + "," + end + "]Text: " + new String(data));
+        System.out.println("[" + start + "," + end + "]Element: " + new String(data));
         return data;
          
     }
