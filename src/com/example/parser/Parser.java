@@ -150,7 +150,7 @@ public class Parser {
             data = null;
         }
         System.out.println("[" + start + "," + end + "]Element: " + new String(data));
-        printNode(text);//把标签里面的属性打印出来
+        printNode(text);//对于标签里面的属性，再进行解析并且打印
         return data;
          
     }
@@ -164,7 +164,7 @@ public class Parser {
      * @throws Exception
      */
     public void parseEndTag(int start) throws Exception {
-        StringBuffer hsml = new StringBuffer();
+        StringBuffer temp = new StringBuffer();
         while (true) {
             char ch = this.getChar();
             if ('<' == ch) {
@@ -177,7 +177,7 @@ public class Parser {
             }else if ('>' == ch) {
                 break;
             } else {
-                hsml.append(ch);
+                temp.append(ch);
             }
         }
         //
