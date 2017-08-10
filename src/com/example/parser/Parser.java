@@ -1,5 +1,6 @@
 package com.example.parser;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
@@ -52,11 +53,9 @@ public class Parser {
 //	    	                if (data != null) {
 //	    	                	System.out.println(new String(data));
 //	    	                }
-				//
 	    	                break;
 	    	            } else if ('<' == ch) {
 	    	            	//解析到 空 等各类标签后 循环解析到 < 为止， 计算进入时的字符间的内容
-	    	            	
 	    	                this.ungetChar();
 	    	                char data[] = this.makeString(start, pos);
 //	    	                if (data != null) {
@@ -67,6 +66,29 @@ public class Parser {
 	    	            }
 	    	        }
 	    }
+	 
+	 
+	 
+	 /*
+	     * 打印一个标签里面的属性
+	     * 具体场景可以根据
+	     */
+	    private void printNode(String text) throws IOException {
+	    	Reader reader =new StringReader(text);
+	    	char c = (char) reader.read();
+	    	String temp="";
+			while (c != EOF) {
+				if (c == ' ') {
+					System.out.println(temp);
+					temp = "";
+				}
+				temp += c;
+				c = (char) reader.read();
+			} 	 
+		}
+	 
+	 
+	 
 	 
 	 public void ungetChar(){
 		 try {
@@ -123,11 +145,15 @@ public class Parser {
             data = null;
         }
         System.out.println("[" + start + "," + end + "]Element: " + new String(data));
+        printNode(text);//把标签里面的属性打印出来
         return data;
          
     }
     
-    /**
+    
+    
+
+	/**
      * 结束一个完整标签
      * @param start
      * @throws Exception
@@ -150,7 +176,7 @@ public class Parser {
             }
         }
         //
-        System.out.println(hsml+" )");
+//        System.out.println(hsml+" )");
     }
     
     
