@@ -77,9 +77,14 @@ public class Parser {
 	    	Reader reader =new StringReader(text);
 	    	char c = (char) reader.read();
 	    	String temp="";
+	    	boolean first = true;
 			while (c != EOF) {
 				if (c == ' ') {
-					System.out.println(temp);
+					if(first)
+						System.out.println(temp);
+					else 
+						System.out.println("Attribute£º"+temp);
+					first = false;
 					temp = "";
 				}
 				temp += c;
